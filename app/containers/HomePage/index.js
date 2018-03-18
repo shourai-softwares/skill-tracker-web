@@ -10,15 +10,30 @@
  */
 
 import React from 'react';
-import { FormattedMessage } from 'react-intl';
-import messages from './messages';
+import { Row, Col, Card, CardBody } from 'reactstrap';
+import SuccessButton from '../../components/SuccessButton/index';
+import SkillList from '../../components/SkillList/index';
 
 export default class HomePage extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
   render() {
     return (
-      <h1>
-        <FormattedMessage {...messages.header} />
-      </h1>
+      <div>
+        <Row>
+          <Col xs={{ size: 3, offset: 9 }} >
+            <div className="my-2 text-right">
+              <SuccessButton>
+                Adicionar Skill
+              </SuccessButton>
+            </div>
+          </Col>
+        </Row>
+        <Card>
+          <CardBody>
+            LooL
+          </CardBody>
+          <SkillList skills={['a', 'b', 'c']} />
+        </Card>
+      </div>
     );
   }
 }

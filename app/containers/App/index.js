@@ -13,17 +13,18 @@
 
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
+import { Container } from 'reactstrap';
 
 import HomePage from 'containers/HomePage/Loadable';
 import NotFoundPage from 'containers/NotFoundPage/Loadable';
 
 export default function App() {
   return (
-    <div>
+    <Container>
       <Switch>
         <Route exact path="/" component={HomePage} />
         <Route component={NotFoundPage} />
       </Switch>
-    </div>
+    </Container>
   );
 }
