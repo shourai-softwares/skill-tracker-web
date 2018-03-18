@@ -11,7 +11,7 @@ import { ListGroup, ListGroupItem } from 'reactstrap';
 class SkillList extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
   render() {
     const skills = this.props.skills.map((skill) => (
-      <ListGroupItem>{ skill }</ListGroupItem>
+      <ListGroupItem key={skill.id}>{ skill.name }</ListGroupItem>
     ));
     return (
       <ListGroup flush>

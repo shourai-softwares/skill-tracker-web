@@ -9,12 +9,29 @@
  * the linting exception.
  */
 
+import axios from 'axios';
 import React from 'react';
 import { Row, Col, Card, CardBody } from 'reactstrap';
 import SuccessButton from '../../components/SuccessButton/index';
 import SkillList from '../../components/SkillList/index';
 
 export default class HomePage extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
+  state = {
+    skills: [],
+  };
+
+  componentDidMount() {
+    axios
+      .get('http://localhost:8000/skills')
+      .then((response) => {
+        const newState = {
+          skills: response.data.data,
+        };
+        this.setState(newState);
+      })
+      .catch((error) => console.log(error));
+  }
+
   render() {
     return (
       <div>
@@ -31,7 +48,7 @@ export default class HomePage extends React.PureComponent { // eslint-disable-li
           <CardBody>
             LooL
           </CardBody>
-          <SkillList skills={['a', 'b', 'c']} />
+          <SkillList skills={this.state.skills} />
         </Card>
       </div>
     );
