@@ -22,7 +22,11 @@ class SkillList extends React.PureComponent { // eslint-disable-line react/prefe
 }
 
 SkillList.propTypes = {
-  skills: PropTypes.array,
+  skills: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number,
+    })
+  ).isRequired,
 };
 
 export default SkillList;

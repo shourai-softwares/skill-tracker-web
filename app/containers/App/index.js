@@ -16,6 +16,7 @@ import { Switch, Route } from 'react-router-dom';
 import { Container } from 'reactstrap';
 
 import HomePage from 'containers/HomePage/Loadable';
+import SkillsPage from 'containers/SkillsPage/Loadable';
 import NotFoundPage from 'containers/NotFoundPage/Loadable';
 
 export default function App() {
@@ -23,6 +24,7 @@ export default function App() {
     <Container>
       <Switch>
         <Route exact path="/" component={HomePage} />
+        <Route exact path="/skills" component={SkillsPage} />
         <Route component={NotFoundPage} />
       </Switch>
     </Container>
