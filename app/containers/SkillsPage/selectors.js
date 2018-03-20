@@ -16,7 +16,7 @@ const selectSkillsPageDomain = (state) => state.get('skillsPage');
 
 const makeSelectSkillsPage = () => createSelector(
   selectSkillsPageDomain,
-  (substate) => substate.toJS()
+  (substate) => substate.get('skills')
 );
 
 export default makeSelectSkillsPage;

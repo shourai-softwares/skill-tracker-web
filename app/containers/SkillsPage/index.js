@@ -10,31 +10,19 @@ import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
 import { Row, Col, Card, CardBody } from 'reactstrap';
-import axios from 'axios/index';
 
 import injectSaga from 'utils/injectSaga';
 import injectReducer from 'utils/injectReducer';
 import makeSelectSkillsPage from './selectors';
 import reducer from './reducer';
+import { getSkills } from './actions';
 import saga from './saga';
 import SuccessButton from '../../components/SuccessButton/index';
 import SkillList from '../../components/SkillList/index';
 
 export class SkillsPage extends React.Component { // eslint-disable-line react/prefer-stateless-function
-  state = {
-    skills: [],
-  };
-
   componentDidMount() {
-    axios
-      .get('http://localhost:8000/skills')
-      .then((response) => {
-        const newState = {
-          skills: response.data.data,
-        };
-        this.setState(newState);
-      })
-      .catch((error) => console.log(error));
+    this.props.getSkills();
   }
 
   render() {
@@ -53,7 +41,7 @@ export class SkillsPage extends React.Component { // eslint-disable-line react/p
           <CardBody>
             LooL
           </CardBody>
-          <SkillList skills={this.state.skills} />
+          <SkillList skills={this.props.skills} />
         </Card>
       </div>
     );
@@ -61,16 +49,20 @@ export class SkillsPage extends React.Component { // eslint-disable-line react/p
 }
 
 SkillsPage.propTypes = {
-  dispatch: PropTypes.func.isRequired,
+  getSkills: PropTypes.func.isRequired,
+  skills: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.number,
+    name: PropTypes.string,
+  })).isRequired,
 };
 
 const mapStateToProps = createStructuredSelector({
-  skillspage: makeSelectSkillsPage(),
+  skills: makeSelectSkillsPage(),
 });
 
 function mapDispatchToProps(dispatch) {
   return {
-    dispatch,
+    getSkills: () => dispatch(getSkills()),
   };
 }
 
