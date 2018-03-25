@@ -6,7 +6,7 @@ import {
   GET_SKILL_FAILED,
   ADD_SKILL_REQUESTED,
   ADD_SKILL_SUCCEEDED,
-  ADD_SKILL_FAILED,
+  ADD_SKILL_FAILED, GET_SKILL_URL,
 } from './constants';
 
 // Individual exports for testing
@@ -28,6 +28,13 @@ export function* addSkill(action) {
     yield put({
       type: ADD_SKILL_SUCCEEDED,
       ...newSkill.data,
+    });
+
+    yield put({
+      type: GET_SKILL_REQUESTED,
+      payload: {
+        url: GET_SKILL_URL,
+      },
     });
   } catch (error) {
     yield put({ type: ADD_SKILL_FAILED, error });

@@ -31,9 +31,8 @@ export class SkillsPage extends React.Component { // eslint-disable-line react/p
         <FormAddSkill skills={this.props.skills} />
         <Card>
           <CardBody>
-            LooL
+            <SkillList skills={this.props.skills} />
           </CardBody>
-          <SkillList skills={this.props.skills} />
         </Card>
       </div>
     );
@@ -45,6 +44,7 @@ SkillsPage.propTypes = {
   skills: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.number,
     name: PropTypes.string,
+    children: PropTypes.array,
   })),
 };
 

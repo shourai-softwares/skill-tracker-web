@@ -6,17 +6,22 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import { ListGroup, ListGroupItem } from 'reactstrap';
+import { Card, CardBody } from 'reactstrap';
 
 class SkillList extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
   render() {
     const skills = this.props.skills.map((skill) => (
-      <ListGroupItem key={skill.id}>{ skill.name }</ListGroupItem>
+      <Card key={skill.id}>
+        <CardBody>
+          <strong>{ skill.name }</strong>
+          <SkillList skills={skill.children} />
+        </CardBody>
+      </Card>
     ));
     return (
-      <ListGroup flush>
+      <div>
         { skills }
-      </ListGroup>
+      </div>
     );
   }
 }
@@ -25,6 +30,7 @@ SkillList.propTypes = {
   skills: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.number,
     name: PropTypes.string,
+    children: PropTypes.array,
   })),
 };
 
