@@ -12,6 +12,7 @@ import { Form, FormGroup, Label, Input, Row, Col } from 'reactstrap';
 
 import SuccessButton from '../../components/SuccessButton/index';
 import { addSkill } from '../SkillsPage/actions';
+import SkillOptionsList from '../../components/SkillOptionsList';
 
 export class FormAddSkill extends React.Component { // eslint-disable-line react/prefer-stateless-function
   state = {
@@ -20,10 +21,6 @@ export class FormAddSkill extends React.Component { // eslint-disable-line react
   };
 
   render() {
-    const skills = this.props.skills.map((skill) => (
-      <option key={skill.id} value={skill.id}>{ skill.name }</option>
-    ));
-
     return (
       <div>
         <Row>
@@ -54,7 +51,7 @@ export class FormAddSkill extends React.Component { // eslint-disable-line react
               onChange={(event) => { this.setState({ parent: event.currentTarget.value }); }}
             >
               <React.Fragment>
-                { skills }
+                <SkillOptionsList skills={this.props.skills} />
               </React.Fragment>
             </Input>
           </FormGroup>
