@@ -20,9 +20,9 @@ export class FormAddSkill extends React.Component { // eslint-disable-line react
   };
 
   render() {
-    // const skills = this.props.skills.map((skill) => (
-    //   <option key={skill.id} value={skill.id}>{ skill.name }</option>
-    // ));
+    const skills = this.props.skills.map((skill) => (
+      <option key={skill.id} value={skill.id}>{ skill.name }</option>
+    ));
 
     return (
       <div>
@@ -48,11 +48,15 @@ export class FormAddSkill extends React.Component { // eslint-disable-line react
           <FormGroup>
             <Label>Pai</Label>
             <Input
-              type="number"
+              type="select"
               name="parent"
               value={this.state.parent}
               onChange={(event) => { this.setState({ parent: event.currentTarget.value }); }}
-            />
+            >
+              <React.Fragment>
+                { skills }
+              </React.Fragment>
+            </Input>
           </FormGroup>
           <Input type="submit" />
         </Form>
@@ -63,10 +67,10 @@ export class FormAddSkill extends React.Component { // eslint-disable-line react
 
 FormAddSkill.propTypes = {
   addSkill: PropTypes.func.isRequired,
-  // skills: PropTypes.arrayOf(PropTypes.shape({
-  //   id: PropTypes.number,
-  //   name: PropTypes.string,
-  // })),
+  skills: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.number,
+    name: PropTypes.string,
+  })),
 };
 
 
