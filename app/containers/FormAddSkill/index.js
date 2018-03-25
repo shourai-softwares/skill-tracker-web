@@ -50,6 +50,7 @@ export class FormAddSkill extends React.Component { // eslint-disable-line react
               value={this.state.parent}
               onChange={(event) => { this.setState({ parent: event.currentTarget.value }); }}
             >
+              <option value="">(Sem Pai)</option>
               <React.Fragment>
                 <SkillOptionsList skills={this.props.skills} />
               </React.Fragment>
