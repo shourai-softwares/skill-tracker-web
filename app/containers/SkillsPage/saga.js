@@ -4,13 +4,34 @@ import {
   GET_SKILL_REQUESTED,
   GET_SKILL_SUCCEEDED,
   GET_SKILL_FAILED,
+  ADD_SKILL_REQUESTED,
+  ADD_SKILL_SUCCEEDED,
+  ADD_SKILL_FAILED,
 } from './constants';
 
 // Individual exports for testing
 export default function* defaultSaga() {
   yield all([
     watchGetSkills(),
+    watchAddSkill(),
   ]);
+}
+
+export function* watchAddSkill() {
+  yield takeEvery(ADD_SKILL_REQUESTED, addSkill);
+}
+
+export function* addSkill(action) {
+  try {
+    const newSkill = yield call(axios.post, action.payload.url, action.newSkill);
+
+    yield put({
+      type: ADD_SKILL_SUCCEEDED,
+      ...newSkill.data,
+    });
+  } catch (error) {
+    yield put({ type: ADD_SKILL_FAILED, error });
+  }
 }
 
 export function* watchGetSkills() {
