@@ -21,7 +21,7 @@
     "preinstall": "npm run npmcheckversion",
     "postinstall": "npm run build:dll",
     "prebuild": "npm run build:clean",
-    "build": "cross-env NODE_ENV=production webpack --config internals/webpack/webpack.prod.babel.js --color -p --progress --hide-modules --display-optimization-bailout",
+    "build": "cross-env NODE_ENV=production env-cmd .env webpack --config internals/webpack/webpack.prod.babel.js --color -p --progress --hide-modules --display-optimization-bailout",
     "build:clean": "rimraf ./build",
     "build:dll": "node ./internals/scripts/dependencies.js",
     "start": "cross-env NODE_ENV=development env-cmd .env node server",
@@ -247,7 +247,8 @@
     "sanitize.css": "4.1.0",
     "styled-components": "3.2.3",
     "warning": "3.0.0",
-    "whatwg-fetch": "2.0.3"
+    "whatwg-fetch": "2.0.3",
+    "env-cmd": "7.0.0"
   },
   "devDependencies": {
     "add-asset-html-webpack-plugin": "2.0.1",
@@ -269,7 +270,6 @@
     "circular-dependency-plugin": "3.0.0",
     "coveralls": "2.13.1",
     "css-loader": "0.28.4",
-    "env-cmd": "^7.0.0",
     "enzyme": "3.3.0",
     "eslint": "3.19.0",
     "eslint-config-airbnb": "15.0.1",
