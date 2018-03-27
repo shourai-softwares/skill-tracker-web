@@ -17,6 +17,7 @@ export default class HomePage extends React.PureComponent { // eslint-disable-li
     return (
       <div>
         <Link to="/skills">Skills</Link>
+        <Link to="/exercises">Exercises</Link>
       </div>
     );
   }
