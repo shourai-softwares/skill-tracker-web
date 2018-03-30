@@ -13,22 +13,49 @@
 
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
-import { Container } from 'reactstrap';
+import {
+  Collapse,
+  Container,
+  Nav,
+  Navbar,
+  NavbarToggler,
+  NavItem,
+} from 'reactstrap';
 
 import HomePage from 'containers/HomePage/Loadable';
 import SkillsPage from 'containers/SkillsPage/Loadable';
 import ExercisesPage from 'containers/ExercisesPage/Loadable';
 import NotFoundPage from 'containers/NotFoundPage/Loadable';
 
+import NavLink from 'components/NavLink/index';
+
 export default function App() {
   return (
-    <Container>
-      <Switch>
-        <Route exact path="/" component={HomePage} />
-        <Route exact path="/skills" component={SkillsPage} />
-        <Route exact path="/exercises" component={ExercisesPage} />
-        <Route component={NotFoundPage} />
-      </Switch>
-    </Container>
+    <React.Fragment>
+      <Navbar className="mb-3" dark color="dark" expand="xs">
+        <NavbarToggler />
+        <Collapse isOpen navbar>
+          <Nav navbar>
+            <NavItem>
+              <NavLink exact to="/">Home</NavLink>
+            </NavItem>
+            <NavItem>
+              <NavLink exact to="/skills">Skills</NavLink>
+            </NavItem>
+            <NavItem>
+              <NavLink exact to="/exercises">Exercises</NavLink>
+            </NavItem>
+          </Nav>
+        </Collapse>
+      </Navbar>
+      <Container>
+        <Switch>
+          <Route exact path="/" component={HomePage} />
+          <Route exact path="/skills" component={SkillsPage} />
+          <Route exact path="/exercises" component={ExercisesPage} />
+          <Route component={NotFoundPage} />
+        </Switch>
+      </Container>
+    </React.Fragment>
   );
 }
