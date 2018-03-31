@@ -5,21 +5,13 @@ import { createSelector } from 'reselect';
  */
 const selectSkillsPageDomain = (state) => state.get('skillsPage');
 
-/**
- * Other specific selectors
- */
-
-
-/**
- * Default selector used by SkillsPage
- */
-
-const makeSelectSkillsPage = () => createSelector(
+const makeSelectSkillTrees = () => createSelector(
   selectSkillsPageDomain,
-  (substate) => substate.get('skills').toJS()
+  (substate) => substate.get('skillTrees').toJS()
 );
 
-export default makeSelectSkillsPage;
 export {
   selectSkillsPageDomain,
+  makeSelectSkillTrees,
 };
+export default makeSelectSkillTrees;

@@ -7,13 +7,13 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 
-function NNavLink(props) {
+function ActiveNavLink(props) {
   return (
     <NavLink className="nav-link" {...props} activeClassName="active" />
   );
 }
 
-NNavLink.propTypes = {
+ActiveNavLink.propTypes = {
 };
 
-export default NNavLink;
+export default ActiveNavLink;

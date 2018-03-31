@@ -4,15 +4,20 @@ import {
   GET_SKILL_REQUESTED,
   GET_SKILL_SUCCEEDED,
   GET_SKILL_FAILED,
+  GET_SKILL_TREE_URL,
+  GET_SKILL_TREE_REQUESTED,
+  GET_SKILL_TREE_SUCCEEDED,
+  GET_SKILL_TREE_FAILED,
   ADD_SKILL_REQUESTED,
   ADD_SKILL_SUCCEEDED,
-  ADD_SKILL_FAILED, GET_SKILL_URL,
+  ADD_SKILL_FAILED,
 } from './constants';
 
 // Individual exports for testing
 export default function* defaultSaga() {
   yield all([
     watchGetSkills(),
+    watchGetSkillTrees(),
     watchAddSkill(),
   ]);
 }
@@ -31,9 +36,9 @@ export function* addSkill(action) {
     });
 
     yield put({
-      type: GET_SKILL_REQUESTED,
+      type: GET_SKILL_TREE_REQUESTED,
       payload: {
-        url: GET_SKILL_URL,
+        url: GET_SKILL_TREE_URL,
       },
     });
   } catch (error) {
@@ -55,5 +60,22 @@ export function* getSkills(action) {
     });
   } catch (error) {
     yield put({ type: GET_SKILL_FAILED, error });
+  }
+}
+
+export function* watchGetSkillTrees() {
+  yield takeEvery(GET_SKILL_TREE_REQUESTED, getSkillTrees);
+}
+
+export function* getSkillTrees(action) {
+  try {
+    const skills = yield call(axios.get, action.payload.url);
+
+    yield put({
+      type: GET_SKILL_TREE_SUCCEEDED,
+      ...skills.data,
+    });
+  } catch (error) {
+    yield put({ type: GET_SKILL_TREE_FAILED, error });
   }
 }

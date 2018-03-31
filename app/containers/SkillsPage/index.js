@@ -13,25 +13,25 @@ import { Card, CardBody } from 'reactstrap';
 
 import injectSaga from 'utils/injectSaga';
 import injectReducer from 'utils/injectReducer';
-import makeSelectSkillsPage from './selectors';
+import makeSelectSkillTrees from 'containers/SkillsPage/selectors';
+import FormAddSkill from 'containers/FormAddSkill';
+import SkillList from 'components/SkillList';
 import reducer from './reducer';
-import { getSkills } from './actions';
+import { getSkillTrees } from './actions';
 import saga from './saga';
-import SkillList from '../../components/SkillList/index';
-import FormAddSkill from '../FormAddSkill';
 
 export class SkillsPage extends React.Component { // eslint-disable-line react/prefer-stateless-function
   componentDidMount() {
-    this.props.getSkills();
+    this.props.getSkillTrees();
   }
 
   render() {
     return (
       <div>
-        <FormAddSkill skills={this.props.skills} />
+        <FormAddSkill skillTrees={this.props.skillTrees} />
         <Card>
           <CardBody>
-            <SkillList skills={this.props.skills} />
+            <SkillList skillTrees={this.props.skillTrees} />
           </CardBody>
         </Card>
       </div>
@@ -40,21 +40,20 @@ export class SkillsPage extends React.Component { // eslint-disable-line react/p
 }
 
 SkillsPage.propTypes = {
-  getSkills: PropTypes.func.isRequired,
-  skills: PropTypes.arrayOf(PropTypes.shape({
-    id: PropTypes.number,
-    name: PropTypes.string,
+  getSkillTrees: PropTypes.func.isRequired,
+  skillTrees: PropTypes.arrayOf(PropTypes.shape({
+    root: PropTypes.object,
     children: PropTypes.array,
   })),
 };
 
 const mapStateToProps = createStructuredSelector({
-  skills: makeSelectSkillsPage(),
+  skillTrees: makeSelectSkillTrees(),
 });
 
 function mapDispatchToProps(dispatch) {
   return {
-    getSkills: () => dispatch(getSkills()),
+    getSkillTrees: () => dispatch(getSkillTrees()),
   };
 }
 

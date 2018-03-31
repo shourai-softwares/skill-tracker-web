@@ -9,10 +9,10 @@ import PropTypes from 'prop-types';
 
 
 function SkillOptionsList(props) {
-  const skills = props.skills.map((skill) => (
-    <React.Fragment key={skill.id}>
-      <option value={skill.id}>{props.prepend}{ skill.name }</option>
-      <SkillOptionsList skills={skill.children} prepend={`${props.prepend}-`} />
+  const skills = props.skillTrees.map((skill) => (
+    <React.Fragment key={skill.root.id}>
+      <option value={skill.root.id}>{props.prepend}{ skill.root.name }</option>
+      <SkillOptionsList skillTrees={skill.children} prepend={`${props.prepend}-`} />
     </React.Fragment>
   ));
 
@@ -29,10 +29,7 @@ SkillOptionsList.defaultProps = {
 
 SkillOptionsList.propTypes = {
   prepend: PropTypes.string.isRequired,
-  skills: PropTypes.arrayOf(PropTypes.shape({
-    id: PropTypes.number,
-    name: PropTypes.string,
-  })),
+  skillTrees: PropTypes.array,
 };
 
 export default SkillOptionsList;

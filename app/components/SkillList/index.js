@@ -10,26 +10,25 @@ import { Card, CardBody } from 'reactstrap';
 
 class SkillList extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
   render() {
-    const skills = this.props.skills.map((skill) => (
-      <Card key={skill.id}>
+    const skillTrees = this.props.skillTrees.map((skillTree) => (
+      <Card className="mb-3" key={skillTree.root.id}>
         <CardBody>
-          <strong>{ skill.name }</strong>
-          <SkillList skills={skill.children} />
+          <strong>{ skillTree.root.name }</strong>
+          <SkillList skillTrees={skillTree.children} />
         </CardBody>
       </Card>
     ));
     return (
       <div>
-        { skills }
+        { skillTrees }
       </div>
     );
   }
 }
 
 SkillList.propTypes = {
-  skills: PropTypes.arrayOf(PropTypes.shape({
-    id: PropTypes.number,
-    name: PropTypes.string,
+  skillTrees: PropTypes.arrayOf(PropTypes.shape({
+    root: PropTypes.object,
     children: PropTypes.array,
   })),
 };

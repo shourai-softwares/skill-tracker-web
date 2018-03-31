@@ -9,6 +9,8 @@ import {
   ADD_SKILL_URL,
   GET_SKILL_REQUESTED,
   GET_SKILL_URL,
+  GET_SKILL_TREE_REQUESTED,
+  GET_SKILL_TREE_URL,
 } from './constants';
 
 export function addSkill(newSkill) {
@@ -18,6 +20,15 @@ export function addSkill(newSkill) {
       url: ADD_SKILL_URL,
     },
     newSkill,
+  };
+}
+
+export function getSkillTrees() {
+  return {
+    type: GET_SKILL_TREE_REQUESTED,
+    payload: {
+      url: GET_SKILL_TREE_URL,
+    },
   };
 }
 

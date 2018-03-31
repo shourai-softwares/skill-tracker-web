@@ -52,7 +52,7 @@ export class FormAddSkill extends React.Component { // eslint-disable-line react
             >
               <option value="">(Sem Pai)</option>
               <React.Fragment>
-                <SkillOptionsList skills={this.props.skills} />
+                <SkillOptionsList skillTrees={this.props.skillTrees} />
               </React.Fragment>
             </Input>
           </FormGroup>
@@ -65,10 +65,7 @@ export class FormAddSkill extends React.Component { // eslint-disable-line react
 
 FormAddSkill.propTypes = {
   addSkill: PropTypes.func.isRequired,
-  skills: PropTypes.arrayOf(PropTypes.shape({
-    id: PropTypes.number,
-    name: PropTypes.string,
-  })),
+  skillTrees: PropTypes.array,
 };
 
 
