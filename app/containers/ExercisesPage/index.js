@@ -13,6 +13,7 @@ import { ListGroup, ListGroupItem } from 'reactstrap';
 
 import injectSaga from 'utils/injectSaga';
 import injectReducer from 'utils/injectReducer';
+import FormAddExercise from 'containers/FormAddExercise';
 import { makeSelectSkills } from 'containers/App/selectors';
 import { getSkills } from 'containers/SkillsPage/actions';
 import makeSelectExercisesPage from './selectors';
@@ -39,9 +40,12 @@ export class ExercisesPage extends React.Component { // eslint-disable-line reac
     ));
 
     return (
-      <ListGroup>
-        { exercises }
-      </ListGroup>
+      <React.Fragment>
+        <FormAddExercise skills={this.props.skills} />
+        <ListGroup>
+          { exercises }
+        </ListGroup>
+      </React.Fragment>
     );
   }
 }

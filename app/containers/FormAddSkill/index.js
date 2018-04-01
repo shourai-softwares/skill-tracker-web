@@ -10,9 +10,9 @@ import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { Form, FormGroup, Label, Input, Row, Col } from 'reactstrap';
 
-import SuccessButton from '../../components/SuccessButton/index';
-import { addSkill } from '../SkillsPage/actions';
-import SkillOptionsList from '../../components/SkillOptionsList';
+import { addSkill } from 'containers/SkillsPage/actions';
+import SuccessButton from 'components/SuccessButton/index';
+import SkillOptionsList from 'components/SkillOptionsList';
 
 export class FormAddSkill extends React.Component { // eslint-disable-line react/prefer-stateless-function
   state = {

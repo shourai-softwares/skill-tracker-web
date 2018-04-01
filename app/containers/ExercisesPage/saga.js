@@ -6,15 +6,20 @@ import {
 } from 'containers/SkillsPage/constants';
 import { all, call, put, takeEvery } from 'redux-saga/effects';
 import {
-  GET_EXERCISE_FAILED,
+  ADD_EXERCISE_REQUESTED,
+  ADD_EXERCISE_SUCCEEDED,
+  ADD_EXERCISE_FAILED,
+  GET_EXERCISE_URL,
   GET_EXERCISE_REQUESTED,
   GET_EXERCISE_SUCCEEDED,
+  GET_EXERCISE_FAILED,
 } from './constants';
 
 // Individual exports for testing
 export default function* defaultSaga() {
   yield all([
     watchGetExercise(),
+    watchAddExercise(),
     watchGetSkills(),
   ]);
 }
@@ -51,5 +56,29 @@ export function* getSkills(action) {
     });
   } catch (error) {
     yield put({ type: GET_SKILL_FAILED, error });
+  }
+}
+
+export function* watchAddExercise() {
+  yield takeEvery(ADD_EXERCISE_REQUESTED, addExercise);
+}
+
+export function* addExercise(action) {
+  try {
+    const newExercise = yield call(axios.post, action.payload.url, action.newExercise);
+
+    yield put({
+      type: ADD_EXERCISE_SUCCEEDED,
+      ...newExercise.data,
+    });
+
+    yield put({
+      type: GET_EXERCISE_REQUESTED,
+      payload: {
+        url: GET_EXERCISE_URL,
+      },
+    });
+  } catch (error) {
+    yield put({ type: ADD_EXERCISE_FAILED, error });
   }
 }
