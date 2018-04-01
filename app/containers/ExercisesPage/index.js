@@ -22,15 +22,15 @@ import saga from './saga';
 import { getExercises } from './actions';
 
 export class ExercisesPage extends React.Component { // eslint-disable-line react/prefer-stateless-function
-  componentDidMount() {
+  componentDidMount = () => {
     this.props.getSkills();
     this.props.getExercises();
-  }
+  };
 
-  getSkillNameFor(exercise) {
+  getSkillNameFor = (exercise) => {
     const skill = this.props.skills.find((s) => (s.id === exercise.skill.id));
     return skill.name;
-  }
+  };
 
   render() {
     const exercises = this.props.exercises.map((exercise) => (
