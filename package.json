@@ -240,6 +240,7 @@
     "react-router-dom": "4.2.2",
     "react-router-redux": "5.0.0-alpha.9",
     "reactstrap": "^5.0.0",
+    "recharts": "^1.0.0-beta.10",
     "redux": "3.6.0",
     "redux-immutable": "4.0.0",
     "redux-saga": "0.15.3",
@@ -247,8 +248,7 @@
     "sanitize.css": "4.1.0",
     "styled-components": "3.2.3",
     "warning": "3.0.0",
-    "whatwg-fetch": "2.0.3",
-    "env-cmd": "7.0.0"
+    "whatwg-fetch": "2.0.3"
   },
   "devDependencies": {
     "add-asset-html-webpack-plugin": "2.0.1",
@@ -270,6 +270,7 @@
     "circular-dependency-plugin": "3.0.0",
     "coveralls": "2.13.1",
     "css-loader": "0.28.4",
+    "env-cmd": "7.0.0",
     "enzyme": "3.3.0",
     "eslint": "3.19.0",
     "eslint-config-airbnb": "15.0.1",
