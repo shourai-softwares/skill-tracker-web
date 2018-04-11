@@ -14,10 +14,9 @@ import { Card, CardBody } from 'reactstrap';
 import injectSaga from 'utils/injectSaga';
 import injectReducer from 'utils/injectReducer';
 import makeSelectSkillTrees from 'containers/SkillsPage/selectors';
-import FormAddSkill from 'containers/FormAddSkill';
 import SkillList from 'components/SkillList';
 import reducer from './reducer';
-import { getSkillTrees } from './actions';
+import { addSkill, getSkillTrees } from './actions';
 import saga from './saga';
 
 export class SkillsPage extends React.Component { // eslint-disable-line react/prefer-stateless-function
@@ -28,10 +27,12 @@ export class SkillsPage extends React.Component { // eslint-disable-line react/p
   render() {
     return (
       <div>
-        <FormAddSkill skillTrees={this.props.skillTrees} />
         <Card>
           <CardBody>
-            <SkillList skillTrees={this.props.skillTrees} />
+            <SkillList
+              skillTrees={this.props.skillTrees}
+              addSkill={this.props.addSkill}
+            />
           </CardBody>
         </Card>
       </div>
@@ -40,6 +41,7 @@ export class SkillsPage extends React.Component { // eslint-disable-line react/p
 }
 
 SkillsPage.propTypes = {
+  addSkill: PropTypes.func.isRequired,
   getSkillTrees: PropTypes.func.isRequired,
   skillTrees: PropTypes.arrayOf(PropTypes.shape({
     root: PropTypes.object,
@@ -54,6 +56,7 @@ const mapStateToProps = createStructuredSelector({
 function mapDispatchToProps(dispatch) {
   return {
     getSkillTrees: () => dispatch(getSkillTrees()),
+    addSkill: (newSkill) => dispatch(addSkill(newSkill)),
   };
 }
 
