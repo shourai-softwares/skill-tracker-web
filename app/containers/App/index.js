@@ -26,12 +26,13 @@ import HomePage from 'containers/HomePage/Loadable';
 import SkillsPage from 'containers/SkillsPage/Loadable';
 import ExercisesPage from 'containers/ExercisesPage/Loadable';
 import NotFoundPage from 'containers/NotFoundPage/Loadable';
+import AuthProvider from 'containers/AuthProvider';
 
 import NavLink from 'components/NavLink/index';
 
 export default function App() {
   return (
-    <React.Fragment>
+    <AuthProvider>
       <Navbar className="mb-3" dark color="dark" expand="xs">
         <NavbarToggler />
         <Collapse isOpen navbar>
@@ -56,6 +57,6 @@ export default function App() {
           <Route component={NotFoundPage} />
         </Switch>
       </Container>
-    </React.Fragment>
+    </AuthProvider>
   );
 }
