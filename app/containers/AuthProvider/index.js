@@ -10,6 +10,7 @@ import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { createStructuredSelector } from 'reselect';
 import injectReducer from 'utils/injectReducer';
+import LoginPage from 'containers/LoginPage/Loadable';
 
 import reducer from './reducer';
 import { makeSelectApiKey } from './selector';
@@ -24,9 +25,7 @@ export class AuthProvider extends React.PureComponent { // eslint-disable-line r
       );
     }
 
-    return (
-      <div>LOGIN</div>
-    );
+    return (<LoginPage />);
   }
 }
 
