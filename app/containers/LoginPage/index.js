@@ -30,33 +30,31 @@ import saga from './saga';
 export class LoginPage extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
   render() {
     return (
-      <div className="container">
-        <Row>
-          <Col sm={{ size: '6', offset: '3' }}>
-            <Card>
-              <CardBody>
-                <Form>
-                  <FormGroup>
-                    <Label>Login</Label>
-                    <Input />
-                  </FormGroup>
-                  <FormGroup>
-                    <Label>Senha</Label>
-                    <Input type="password" />
-                  </FormGroup>
-                  <div className="text-center">
-                    <Button>
-                      Login
-                    </Button>
-                  </div>
-                </Form>
-                <a href="#a">Cadastre-se</a>
-                &nbsp;|&nbsp;
-                <a href="#b">Esqueci minha senha</a>
-              </CardBody>
-            </Card>
-          </Col>
-        </Row>
+      <div style={{display: 'flex', position: 'absolute', width: '100%', height: '100%', justifyContent: 'center' }}>
+        <div>
+          <Card>
+            <CardBody>
+              <Form>
+                <FormGroup>
+                  <Label>Login</Label>
+                  <Input />
+                </FormGroup>
+                <FormGroup>
+                  <Label>Senha</Label>
+                  <Input type="password" />
+                </FormGroup>
+                <div className="text-center">
+                  <Button>
+                    Login
+                  </Button>
+                </div>
+              </Form>
+              <a href="#a">Cadastre-se</a>
+              &nbsp;|&nbsp;
+              <a href="#b">Esqueci minha senha</a>
+            </CardBody>
+          </Card>
+        </div>
       </div>
     );
   }
